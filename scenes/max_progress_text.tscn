@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://fiu3w1huym2a"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gfteg"]
+font_size = 20
+outline_size = 1
+
+[node name="Max_progress_text" type="CanvasLayer"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "You ate too much.."
+label_settings = SubResource("LabelSettings_gfteg")

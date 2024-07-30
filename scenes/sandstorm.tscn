@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://bfp38abo8a0ia"]
+
+[ext_resource type="Texture2D" uid="uid://u6vevk6bomha" path="res://animations/player_animation/Burza piaskowa.png" id="1_jdt2v"]
+[ext_resource type="Script" path="res://scripts/sandstorm.gd" id="1_uiwh0"]
+
+[sub_resource type="Animation" id="Animation_xag8k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_lffkw"]
+resource_name = "sandstorm"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ak0m2"]
+_data = {
+"RESET": SubResource("Animation_xag8k"),
+"sandstorm": SubResource("Animation_lffkw")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mqx7"]
+size = Vector2(84, 229)
+
+[node name="Sandstorm" type="Area2D"]
+z_index = 1
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_uiwh0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jdt2v")
+hframes = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ak0m2")
+}
+autoplay = "sandstorm"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 13.5)
+shape = SubResource("RectangleShape2D_7mqx7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

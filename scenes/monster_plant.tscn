@@ -1,0 +1,94 @@
+[gd_scene load_steps=14 format=3 uid="uid://bvhkdvjdu5ra5"]
+
+[ext_resource type="Script" path="res://scripts/monster_plant.gd" id="1_ofx0x"]
+[ext_resource type="Texture2D" uid="uid://ctt7lwnb4lohs" path="res://animations/player_animation/idle_monster_plant.png" id="1_tv4k3"]
+[ext_resource type="Texture2D" uid="uid://qe3toyvgr8gs" path="res://animations/player_animation/attack_monster_plant.png" id="2_ddqkb"]
+[ext_resource type="AudioStream" uid="uid://cehs1hjy343ka" path="res://sounds/monster plant/cartoon-bite-39234.wav" id="4_kiqem"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l67a3"]
+atlas = ExtResource("2_ddqkb")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5swjs"]
+atlas = ExtResource("2_ddqkb")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ns88k"]
+atlas = ExtResource("2_ddqkb")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otcmi"]
+atlas = ExtResource("2_ddqkb")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_am6kv"]
+atlas = ExtResource("2_ddqkb")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_056jt"]
+atlas = ExtResource("1_tv4k3")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2i4bn"]
+atlas = ExtResource("1_tv4k3")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uhisw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l67a3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5swjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ns88k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otcmi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_am6kv")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_056jt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2i4bn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ynci1"]
+radius = 45.0
+height = 128.0
+
+[node name="Monster_plant" type="Area2D"]
+z_index = 1
+script = ExtResource("1_ofx0x")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_uhisw")
+animation = &"attack"
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ynci1")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_kiqem")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

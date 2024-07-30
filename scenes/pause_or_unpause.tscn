@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dngw0cm3jj2dp"]
+
+[ext_resource type="Script" path="res://scripts/pause_or_unpause.gd" id="1_vk3u8"]
+[ext_resource type="Texture2D" uid="uid://ep8fy1fwkcwo" path="res://graphics/pause.png" id="1_wxj42"]
+
+[node name="pause_or_unpause" type="CanvasLayer"]
+script = ExtResource("1_vk3u8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="HBoxContainer/MarginContainer"]
+process_mode = 3
+position = Vector2(580, 43)
+scale = Vector2(0.979165, 1.02083)
+texture_normal = ExtResource("1_wxj42")
+action = "click"

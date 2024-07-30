@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cehs1hjy343ka"
+path="res://.godot/imported/cartoon-bite-39234.wav-13e6bbcd75306b8988e465981326a213.sample"
+
+[deps]
+
+source_file="res://sounds/monster plant/cartoon-bite-39234.wav"
+dest_files=["res://.godot/imported/cartoon-bite-39234.wav-13e6bbcd75306b8988e465981326a213.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

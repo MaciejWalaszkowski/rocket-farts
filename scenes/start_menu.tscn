@@ -1,0 +1,233 @@
+[gd_scene load_steps=12 format=3 uid="uid://2qherdn7l3k2"]
+
+[ext_resource type="Script" path="res://scripts/start_menu.gd" id="1_gbgod"]
+[ext_resource type="Texture2D" uid="uid://jbhrpqxye03t" path="res://graphics/play.png" id="1_wkv7m"]
+[ext_resource type="Texture2D" uid="uid://dsaru3rx3ns33" path="res://graphics/terrain/piaskowa platforma.png" id="2_5xg4a"]
+[ext_resource type="Texture2D" uid="uid://d4n2c4ovw1fmw" path="res://graphics/terrain/podstawowa platforma.png" id="3_ggce1"]
+[ext_resource type="Texture2D" uid="uid://cohuqj74dn2md" path="res://graphics/kaktus.png" id="4_eoh1p"]
+[ext_resource type="Texture2D" uid="uid://56m8fc1e8imy" path="res://animations/player_animation/grubas_jump_idle.png" id="7_0d7j3"]
+[ext_resource type="PackedScene" uid="uid://bvhkdvjdu5ra5" path="res://scenes/monster_plant.tscn" id="7_hptly"]
+[ext_resource type="Texture2D" uid="uid://dddn2xwfy4rw2" path="res://animations/player_animation/gazy.png" id="8_ao3w5"]
+[ext_resource type="Texture2D" uid="uid://d427iaxhn5lm" path="res://graphics/pizza.png" id="9_j6bq7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_f4whk"]
+font_size = 89
+outline_size = 4
+shadow_size = 23
+shadow_color = Color(0.651134, 0.708884, 0.716707, 0.843137)
+shadow_offset = Vector2(10, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0e3c1"]
+font_size = 60
+outline_size = 21
+outline_color = Color(0.560955, 0.560955, 0.560955, 1)
+
+[node name="Start_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gbgod")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.219608, 0.301961, 0.364706, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "POOP JUMP"
+label_settings = SubResource("LabelSettings_f4whk")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="ColorRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_wkv7m")
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/HBoxContainer/TextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PLAY"
+label_settings = SubResource("LabelSettings_0e3c1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LeftSide" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Control" type="Control" parent="ColorRect/MarginContainer/LeftSide"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="PodstawowaPlatforma" type="Sprite2D" parent="ColorRect/MarginContainer/LeftSide/Control"]
+visible = false
+texture = ExtResource("3_ggce1")
+
+[node name="Control2" type="Control" parent="ColorRect/MarginContainer/LeftSide"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="PodstawowaPlatforma2" type="Sprite2D" parent="ColorRect/MarginContainer/LeftSide/Control2"]
+texture = ExtResource("3_ggce1")
+
+[node name="Monster_plant" parent="ColorRect/MarginContainer/LeftSide/Control2" instance=ExtResource("7_hptly")]
+position = Vector2(2, -76)
+
+[node name="Control3" type="Control" parent="ColorRect/MarginContainer/LeftSide"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="PodstawowaPlatforma3" type="Sprite2D" parent="ColorRect/MarginContainer/LeftSide/Control3"]
+texture = ExtResource("3_ggce1")
+
+[node name="Control4" type="Control" parent="ColorRect/MarginContainer/LeftSide"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="PodstawowaPlatforma4" type="Sprite2D" parent="ColorRect/MarginContainer/LeftSide/Control4"]
+texture = ExtResource("3_ggce1")
+
+[node name="Control5" type="Control" parent="ColorRect/MarginContainer/LeftSide"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="PodstawowaPlatforma5" type="Sprite2D" parent="ColorRect/MarginContainer/LeftSide/Control5"]
+texture = ExtResource("3_ggce1")
+
+[node name="Control6" type="Control" parent="ColorRect/MarginContainer/LeftSide"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="PodstawowaPlatforma6" type="Sprite2D" parent="ColorRect/MarginContainer/LeftSide/Control6"]
+texture = ExtResource("3_ggce1")
+
+[node name="RightSide" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Control" type="Control" parent="ColorRect/MarginContainer/RightSide"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="PiaskowaPlatforma" type="Sprite2D" parent="ColorRect/MarginContainer/RightSide/Control"]
+visible = false
+texture = ExtResource("2_5xg4a")
+
+[node name="Control2" type="Control" parent="ColorRect/MarginContainer/RightSide"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="PiaskowaPlatforma2" type="Sprite2D" parent="ColorRect/MarginContainer/RightSide/Control2"]
+position = Vector2(0, -4)
+texture = ExtResource("2_5xg4a")
+
+[node name="Kaktus" type="Sprite2D" parent="ColorRect/MarginContainer/RightSide/Control2"]
+position = Vector2(-2, -82)
+texture = ExtResource("4_eoh1p")
+
+[node name="Control3" type="Control" parent="ColorRect/MarginContainer/RightSide"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="PiaskowaPlatforma3" type="Sprite2D" parent="ColorRect/MarginContainer/RightSide/Control3"]
+position = Vector2(0, -8)
+texture = ExtResource("2_5xg4a")
+
+[node name="Control4" type="Control" parent="ColorRect/MarginContainer/RightSide"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="PiaskowaPlatforma4" type="Sprite2D" parent="ColorRect/MarginContainer/RightSide/Control4"]
+position = Vector2(0, -12)
+texture = ExtResource("2_5xg4a")
+
+[node name="Control5" type="Control" parent="ColorRect/MarginContainer/RightSide"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="PiaskowaPlatforma5" type="Sprite2D" parent="ColorRect/MarginContainer/RightSide/Control5"]
+position = Vector2(0, -16)
+texture = ExtResource("2_5xg4a")
+
+[node name="Control6" type="Control" parent="ColorRect/MarginContainer/RightSide"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+
+[node name="PiaskowaPlatforma6" type="Sprite2D" parent="ColorRect/MarginContainer/RightSide/Control6"]
+texture = ExtResource("2_5xg4a")
+
+[node name="GrubasJumpIdle" type="Sprite2D" parent="."]
+position = Vector2(331, 318)
+texture = ExtResource("7_0d7j3")
+
+[node name="Gazy" type="Sprite2D" parent="."]
+position = Vector2(334, 389)
+texture = ExtResource("8_ao3w5")
+hframes = 10
+frame = 5
+
+[node name="Pizza" type="Sprite2D" parent="."]
+position = Vector2(336, 225)
+texture = ExtResource("9_j6bq7")
+
+[connection signal="button_down" from="ColorRect/MarginContainer/HBoxContainer/TextureButton" to="." method="_on_texture_button_button_down"]
+[connection signal="button_up" from="ColorRect/MarginContainer/HBoxContainer/TextureButton" to="." method="_on_texture_button_button_up"]
+[connection signal="pressed" from="ColorRect/MarginContainer/HBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]

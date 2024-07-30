@@ -1,0 +1,151 @@
+[gd_scene load_steps=10 format=3 uid="uid://djveaoucatowy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_osoi8"]
+font_size = 52
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahy3e"]
+size = Vector2(300, 60)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5ktqm"]
+font_size = 52
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7gcf"]
+size = Vector2(240, 60)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vfhrs"]
+font_size = 52
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ky20"]
+size = Vector2(240, 60)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xvjna"]
+font_size = 52
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_otido"]
+size = Vector2(150, 60)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ssupo"]
+font_size = 52
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.164706)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(170, 200)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+
+[node name="Game_paused_text" type="Label" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Game paused"
+label_settings = SubResource("LabelSettings_osoi8")
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Continue" type="TouchScreenButton" parent="HBoxContainer/MarginContainer2"]
+position = Vector2(-320, 345)
+shape = SubResource("RectangleShape2D_ahy3e")
+
+[node name="Continue_text" type="Label" parent="HBoxContainer/MarginContainer2/Continue"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.5
+offset_top = -36.0
+offset_right = 114.5
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Continue"
+label_settings = SubResource("LabelSettings_5ktqm")
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Restart" type="TouchScreenButton" parent="HBoxContainer/MarginContainer3"]
+position = Vector2(-320, 430)
+shape = SubResource("RectangleShape2D_t7gcf")
+
+[node name="Restart_text" type="Label" parent="HBoxContainer/MarginContainer3/Restart"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -36.0
+offset_right = 90.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart"
+label_settings = SubResource("LabelSettings_vfhrs")
+
+[node name="MCOptions" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Options" type="TouchScreenButton" parent="HBoxContainer/MCOptions"]
+position = Vector2(-323, 515)
+shape = SubResource("RectangleShape2D_3ky20")
+
+[node name="Options_text" type="Label" parent="HBoxContainer/MCOptions/Options"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.0
+offset_top = -36.0
+offset_right = 99.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Options"
+label_settings = SubResource("LabelSettings_xvjna")
+
+[node name="MarginContainer4" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Quit" type="TouchScreenButton" parent="HBoxContainer/MarginContainer4"]
+position = Vector2(-324, 595)
+shape = SubResource("RectangleShape2D_otido")
+
+[node name="Quit_text" type="Label" parent="HBoxContainer/MarginContainer4/Quit"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -27.0
+offset_right = 33.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Quit"
+label_settings = SubResource("LabelSettings_ssupo")
+horizontal_alignment = 1

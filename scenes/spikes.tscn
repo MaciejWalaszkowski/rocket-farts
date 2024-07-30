@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://ripolr3jxfdb"]
+
+[ext_resource type="Script" path="res://scripts/Spikes.gd" id="1_xvhrv"]
+[ext_resource type="Texture2D" uid="uid://xkbv2l2vhgem" path="res://graphics/spikes.png" id="2_c248x"]
+[ext_resource type="AudioStream" uid="uid://c85nif0ttnbo8" path="res://sounds/cactus hurt/676465__stevenmaertens__hit-5.wav" id="3_s68n2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ql4j1"]
+size = Vector2(136, 32)
+
+[node name="Spikes" type="Area2D" groups=["spikes"]]
+collision_layer = 16
+script = ExtResource("1_xvhrv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_c248x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ql4j1")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_s68n2")
+volume_db = -14.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

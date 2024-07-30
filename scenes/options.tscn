@@ -1,0 +1,95 @@
+[gd_scene load_steps=6 format=3 uid="uid://cp62edgeultdv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6ja8f"]
+font_size = 52
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2x1i2"]
+size = Vector2(200, 60)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wdkn8"]
+font_size = 52
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8m50b"]
+size = Vector2(200, 60)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4d3ee"]
+font_size = 52
+
+[node name="OptionsMenu" type="CanvasLayer"]
+process_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.212305, 0.212305, 0.212305, 0.686275)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(182, 200)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+
+[node name="Game_paused_text" type="Label" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Game paused"
+label_settings = SubResource("LabelSettings_6ja8f")
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Mute" type="TouchScreenButton" parent="HBoxContainer/MarginContainer2"]
+process_mode = 2
+position = Vector2(-316, 365)
+shape = SubResource("RectangleShape2D_2x1i2")
+
+[node name="Mute_text" type="Label" parent="HBoxContainer/MarginContainer2/Mute"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.5
+offset_top = -36.0
+offset_right = 85.5
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Mute"
+label_settings = SubResource("LabelSettings_wdkn8")
+horizontal_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Back" type="TouchScreenButton" parent="HBoxContainer/MarginContainer3"]
+position = Vector2(-320, 430)
+shape = SubResource("RectangleShape2D_8m50b")
+
+[node name="Back_text" type="Label" parent="HBoxContainer/MarginContainer3/Back"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.5
+offset_top = -36.0
+offset_right = 63.5
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back"
+label_settings = SubResource("LabelSettings_4d3ee")
+horizontal_alignment = 1

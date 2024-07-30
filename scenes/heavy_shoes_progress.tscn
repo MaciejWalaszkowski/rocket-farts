@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctcoh3oqtsxw4"]
+
+[ext_resource type="Script" path="res://scripts/Heavy_shoes_progress.gd" id="1_m2b0s"]
+[ext_resource type="Texture2D" uid="uid://068pyklyepx8" path="res://graphics/bg_power_up.png" id="2_d4w04"]
+[ext_resource type="Texture2D" uid="uid://ckggru6x8qht7" path="res://graphics/progress_heavy_shoes.png" id="3_5a4wg"]
+
+[node name="Heavy_shoes_progress" type="CanvasLayer"]
+script = ExtResource("1_m2b0s")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = 586.0
+offset_top = 110.0
+offset_right = 634.0
+offset_bottom = 158.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+fill_mode = 4
+texture_under = ExtResource("2_d4w04")
+texture_progress = ExtResource("3_5a4wg")
+
+[node name="TimerHeavyShoes" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="TimerHeavyShoes" to="." method="_on_timer_heavy_shoes_timeout"]

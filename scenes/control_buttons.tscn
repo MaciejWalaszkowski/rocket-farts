@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://brspcxkegs6to"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n08ps"]
+
+[node name="Control_buttons" type="CanvasLayer"]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Jump" type="TouchScreenButton" parent="MarginContainer"]
+position = Vector2(9.53674e-07, -576)
+scale = Vector2(32.3295, 57.5248)
+shape = SubResource("RectangleShape2D_n08ps")
+action = "jump"

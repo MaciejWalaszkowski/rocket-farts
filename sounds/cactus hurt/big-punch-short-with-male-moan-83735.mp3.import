@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b1ok0kbq5urxr"
+path="res://.godot/imported/big-punch-short-with-male-moan-83735.mp3-ebeeec3c56489d872205965bee07f3b9.mp3str"
+
+[deps]
+
+source_file="res://sounds/cactus hurt/big-punch-short-with-male-moan-83735.mp3"
+dest_files=["res://.godot/imported/big-punch-short-with-male-moan-83735.mp3-ebeeec3c56489d872205965bee07f3b9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

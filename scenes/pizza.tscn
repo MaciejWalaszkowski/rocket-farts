@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjtgf3jn03f2e"]
+
+[ext_resource type="Script" path="res://scripts/Pizza.gd" id="1_16flg"]
+[ext_resource type="Texture2D" uid="uid://d427iaxhn5lm" path="res://graphics/pizza.png" id="2_84q8q"]
+
+[node name="Pizza" type="Area2D"]
+script = ExtResource("1_16flg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_84q8q")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(12, -3, 12, -1, 6, 5, 5, 5, 3, 7, 2, 7, 2, 11, 0, 12, -1, 11, -2, 10, -3, 12, -5, 12, -5, 11, -6, 12, -8, 12, -9, 11, -9, 3, -7, -3, -2, -8, -2, -9, 1, -12, 3, -11, 6, -8, 7, -8)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

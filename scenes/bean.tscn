@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc24kv3de32fj"]
+
+[ext_resource type="Texture2D" uid="uid://bqrcul2o12us2" path="res://graphics/bean.png" id="1_sd86a"]
+[ext_resource type="Script" path="res://scripts/bean.gd" id="1_xar83"]
+
+[node name="Bean" type="Area2D"]
+script = ExtResource("1_xar83")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sd86a")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(4, -13, 7, -9, 7, -5, 5, -3, 5, 2, 7, 4, 7, 9, 4, 13, 0, 13, -7, 5, -7, -5, 0, -13)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

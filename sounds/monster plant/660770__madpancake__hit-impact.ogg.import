@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cr1mw4v2xfjna"
+path="res://.godot/imported/660770__madpancake__hit-impact.ogg-186c2b4b3d866353762b4d7ccd6a64ef.oggvorbisstr"
+
+[deps]
+
+source_file="res://sounds/monster plant/660770__madpancake__hit-impact.ogg"
+dest_files=["res://.godot/imported/660770__madpancake__hit-impact.ogg-186c2b4b3d866353762b4d7ccd6a64ef.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
