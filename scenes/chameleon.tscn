@@ -91,7 +91,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -138,7 +138,6 @@ z_index = 1
 position = Vector2(-21, 12)
 sprite_frames = SubResource("SpriteFrames_73w2r")
 animation = &"attack"
-frame = 5
 
 [node name="Area_attack" type="Area2D" parent="AnimatedSprite2D"]
 

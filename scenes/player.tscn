@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://byc3lpclkmwl5"]
+[gd_scene load_steps=55 format=3 uid="uid://byc3lpclkmwl5"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_yw8p5"]
 [ext_resource type="Texture2D" uid="uid://bhraq4gp0hdaq" path="res://animations/player_animation/grubas.png" id="3_whqbs"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dyp311idr1xt2" path="res://animations/player_animation/grubas_move_heavy_shoes.png" id="12_rtrkf"]
 [ext_resource type="Texture2D" uid="uid://nwjel06bbbys" path="res://animations/player_animation/szczupły_grubas_jump_heavy_shoes.png" id="12_uo33v"]
 [ext_resource type="Texture2D" uid="uid://ppt560kic5ep" path="res://animations/player_animation/szczupły_grubas_move_heavy_shoes.png" id="16_1wcq3"]
+[ext_resource type="AudioStream" uid="uid://k8xjaxwc862y" path="res://sounds/button/button-click.wav" id="22_mq187"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rdi73"]
 atlas = ExtResource("3_yeepy")
@@ -302,6 +303,7 @@ size = Vector2(54, 90)
 
 [sub_resource type="Animation" id="Animation_d45ln"]
 resource_name = "Farts"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -309,10 +311,10 @@ tracks/0/path = NodePath("Farts:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0, 1, 2, 3, 4, 5, 5, 6, 7, 8]
+"values": [3, 4, 5, 5]
 }
 
 [sub_resource type="Animation" id="Animation_64n6d"]
@@ -342,15 +344,17 @@ collision_mask = 22
 script = ExtResource("1_yw8p5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 position = Vector2(5, -5)
 sprite_frames = SubResource("SpriteFrames_0map3")
-animation = &"move_pow_up_heavy_shoes"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(9, -3)
 shape = SubResource("RectangleShape2D_ps2n6")
 
 [node name="Farts" type="Sprite2D" parent="."]
+z_index = -1
 position = Vector2(-22, 33)
 texture = ExtResource("6_s356s")
 hframes = 10
@@ -383,5 +387,10 @@ stream = ExtResource("10_tu51o")
 position = Vector2(9, -3)
 shape = SubResource("RectangleShape2D_ps2n6")
 
+[node name="AudioRestart" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_mq187")
+volume_db = 6.19
+
 [connection signal="timeout" from="FartsTimer" to="." method="_on_farts_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="finished" from="AudioRestart" to="." method="_on_audio_restart_finished"]

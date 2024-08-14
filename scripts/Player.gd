@@ -15,7 +15,8 @@ var time_to_die = false
 var push_back_power: float = -5
 var push_back_power2 = 1
 var random_velocity = ["1", "2", "3", "4", "5"]
-var audio_Fart_on = false
+var rand_numb1_5 = false
+var cam_go = false
 
 func _ready():
 	Globals.player = $"."
@@ -33,10 +34,34 @@ func _physics_process(delta):
 	farts_anim()
 	overload_farts_points()
 	player_is_on_floor()
+	max_farts_pos()
+
+func max_farts_pos():
+	if Globals.max_progress_farts:
+		if anim.flip_h:
+			if !Globals.power_up:
+				$Farts.position.x = 43
+				$Farts.position.y = 51
+				$Farts.rotation = 5.5
+			else:
+				$Farts.position.x = 33
+				$Farts.position.y = 31
+				$Farts.rotation = 5
+		else:
+			if Globals.power_up:
+				$Farts.position.x = -25
+				$Farts.position.y = 24
+				$Farts.rotation = 1.3
+			else:
+				$Farts.position.x = -45
+				$Farts.position.y = 24
+				$Farts.rotation = 1.3
 
 func player_is_on_floor():
 	if is_on_floor():
 		Globals.on_floor = true
+		if !Globals.max_progress_farts:
+			$Farts.visible = false
 	else:
 		Globals.on_floor = false
 
@@ -53,59 +78,59 @@ func overload_farts_points():
 			Globals.max_progress_farts = false
 			await get_tree().create_timer(2).timeout
 			$"../Max_progress_text".visible = false
+			rand_numb1_5 = false
 
 func random_pick_velocity():
-	var random_pick_vel = random_velocity.pick_random()
+	var random_pick_vel
+	if !rand_numb1_5:
+		random_pick_vel = random_velocity.pick_random()
+		rand_numb1_5 = true
 	if random_pick_vel == "1":
+		print("1")
 		velocity.x = 500
 		velocity.y = 200
 		velocity.x = -200
 		velocity.y = -100
 	elif random_pick_vel == "2":
+		print("2")
 		velocity.y = 400
 		velocity.x = -350
 		velocity.y = -200
 		velocity.x = 200
-		$Farts.position.x = 43
-		$Farts.position.y = 51
-		$Farts.rotation = 213
 	elif random_pick_vel == "3":
+		print("3")
 		velocity.x = -400
 		velocity.y = -300
 		velocity.x = 350
 		velocity.y = 100
-		$Farts.position.x = 43
-		$Farts.position.y = 51
-		$Farts.rotation = 213
 	elif random_pick_vel == "4":
+		print("4")
 		velocity.y = -300
 		velocity.x = 300
 		velocity.y = 350
 		velocity.x = -300
 	elif random_pick_vel == "5":
+		print("5")
 		velocity.x = 300
 		velocity.y = -400
 		velocity.y = 200
 		velocity.x = -100
-		$Farts.position.x = 43
-		$Farts.position.y = 51
-		$Farts.rotation = 213
 	$FartAudio.play()
-	if Globals.poop > 0:
+	#if Globals.poop > 0 and not is_on_floor():
+	if Globals.max_progress_farts:
 		$Farts.visible = true
 
 func farts_anim():
 	if Globals.get_food:
 		$FartAudio.play()
-	if Globals.farts_on:
-		$Farts.visible = true
-		$AnimationPlayer.play("Farts")
-		$FartsTimer.start()
-		if audio_Fart_on:
-			audio_Fart_on = false
-	else:
-		audio_Fart_on = true
-		$Farts.visible = false
+	if Globals.farts_on and not is_on_floor():
+		if velocity.y < 0:
+			$Farts.visible = true
+			$AnimationPlayer.play("Farts")
+			$FartsTimer.start()
+	#else:
+		#$Farts.visible = false
+		#print("o")
 		#$GasAudio.stop()
 	if is_on_floor() or Globals.poop == 0:
 		$FartsTimer.stop()
@@ -118,7 +143,7 @@ func score():
 			Globals.score = i
 
 func jumper(delta):
-	if Globals.player_alive:
+	if Globals.player_alive and !Globals.max_progress_farts:
 		if Input.is_action_just_pressed("jump"):
 			if !Globals.stuned:
 				$JumpAudio.play()
@@ -177,6 +202,7 @@ func stats_reset():
 	Globals.heavyShoes_on = false
 	Globals.heavyShoes = false
 	Globals.poisoned = false
+	Globals.max_progress_farts = false
 
 func defeat():
 	var player_pos_y = $".".position.y
@@ -191,12 +217,12 @@ func defeat():
 
 func change_anim(delta):
 	if is_on_floor() and velocity.x == 0 and velocity.y == 0:
-		if !Globals.power_up:
+		if !Globals.power_up and !Globals.max_progress_farts:
 			if !Globals.heavyShoes_on:
 				anim.play("idle")
 			else:
 				anim.play("idle_heavy_shoes")
-		else:
+		elif Globals.power_up and !Globals.max_progress_farts:
 			if !Globals.heavyShoes_on:
 				anim.play("idle_power_up")
 			else:
@@ -204,7 +230,7 @@ func change_anim(delta):
 		$Farts.visible = false
 	elif not is_on_floor():
 		velocity.y += gravity * delta
-		if velocity.x == 0:
+		if velocity.x == 0 and !Globals.max_progress_farts:
 			if !Globals.power_up:
 				if !Globals.heavyShoes_on:
 					anim.play("idle_jump")
@@ -216,7 +242,7 @@ func change_anim(delta):
 				else:
 					anim.play("idle_jump_pow_up_heavy_shoes")
 			$Farts.position.x = 0
-			$Farts.position.y = 62
+			$Farts.position.y = 60
 			$Farts.rotation = 0
 			if velocity.y > 0:
 				$Farts.visible = false
@@ -254,15 +280,20 @@ func change_location():
 
 func camera_move(delta):
 	if Globals.player_alive:
+		
 		if player.position.y <= 0:
-			cam.position.y -= 75 * delta
-			if player.position.y <= cam.position.y:
-				cam.position.y = player.position.y
+			print("start")
+			cam_go = true
 		elif player.position.y > 0 and time_to_die:
-			cam.position.y -= 75 * delta
+			print("still go")
+			cam_go = true
 		if Globals.farts_on:
 			if cam.position.y + 100 > player.position.y:
 				cam.position.y = player.position.y - 150
+		if cam_go:
+			cam.position.y -= 75 * delta
+			if player.position.y <= cam.position.y:
+				cam.position.y = player.position.y
 
 func movement(_delta):
 	if Globals.player_alive:
@@ -273,22 +304,38 @@ func movement(_delta):
 
 func movement_on_android():
 	velocity.x = Input.get_accelerometer().normalized().x * Globals.player_speed
-	if velocity.x > 40:
-		anim.flip_h = false
-		$CollisionShape2D.position.x = 10
-		$Farts.position.x = -27
-		$Farts.position.y = 54
-		$Farts.rotation = 214
-	elif velocity.x < -40:
-		anim.flip_h = true
-		$CollisionShape2D.position.x = 0
-		$Farts.position.x = 43
-		$Farts.position.y = 51
-		$Farts.rotation = 213
-	else:
-		anim.flip_h = true
-		$CollisionShape2D.position.x = 0
-		velocity.x = 0
+	if !Globals.max_progress_farts:
+		if velocity.x > 40:
+			anim.flip_h = false
+			$CollisionShape2D.position.x = 10
+			#$Farts.position.x = -27
+			#$Farts.position.y = 54
+			#$Farts.rotation = 214
+			if !Globals.power_up:
+				$Farts.position.x = -35
+				$Farts.position.y = 45
+				$Farts.rotation = 214.2
+			else:
+				$Farts.position.x = -27
+				$Farts.position.y = 44
+				$Farts.rotation = 214.4
+		elif velocity.x < -40:
+			anim.flip_h = true
+			$CollisionShape2D.position.x = 0
+			#$Farts.position.x = 43
+			#$Farts.position.y = 51
+			#$Farts.rotation = 213
+			$Farts.rotation = 212.8
+			if !Globals.power_up:
+				$Farts.position.x = 43
+				$Farts.position.y = 51
+			else:
+				$Farts.position.x = 33
+				$Farts.position.y = 41
+		else:
+			anim.flip_h = true
+			$CollisionShape2D.position.x = 0
+			velocity.x = 0
 
 	if Globals.push_back:
 		Globals.push_back_counter -= 1
@@ -309,25 +356,36 @@ func movement_on_android():
 	move_and_slide()
 
 func movement_on_cp():
-	print(velocity.y)
-	if Input.get_action_strength("right"):
-		velocity.x = Globals.player_speed
-		anim.flip_h = false
-		$CollisionShape2D.position.x = 10
-		$Farts.position.x = -27
-		$Farts.position.y = 54
-		$Farts.rotation = 214
-	elif Input.get_action_strength("left"):
-		velocity.x = -Globals.player_speed
-		anim.flip_h = true
-		$CollisionShape2D.position.x = 0
-		$Farts.position.x = 43
-		$Farts.position.y = 51
-		$Farts.rotation = 213
-	else:
-		anim.flip_h = true
-		$CollisionShape2D.position.x = 0
-		velocity.x = 0
+	if !Globals.max_progress_farts:
+		if Input.get_action_strength("right"):
+			velocity.x = Globals.player_speed
+			anim.flip_h = false
+			$CollisionShape2D.position.x = 10
+			
+			if !Globals.power_up:
+				$Farts.position.x = -35
+				$Farts.position.y = 45
+				$Farts.rotation = 214.2
+			else:
+				$Farts.position.x = -27
+				$Farts.position.y = 44
+				$Farts.rotation = 214.4
+		elif Input.get_action_strength("left"):
+			velocity.x = -Globals.player_speed
+			anim.flip_h = true
+			$CollisionShape2D.position.x = 0
+			$Farts.rotation = 212.8
+			if !Globals.power_up:
+				$Farts.position.x = 43
+				$Farts.position.y = 51
+			else:
+				$Farts.position.x = 33
+				$Farts.position.y = 41
+		else:
+			anim.flip_h = true
+			$CollisionShape2D.position.x = 0
+			velocity.x = 0
+		move_and_slide()
 	if Globals.push_back:
 		Globals.push_back_counter -= 1
 		velocity.x *= push_back_power
@@ -344,12 +402,13 @@ func movement_on_cp():
 			Globals.push_back_counter2 = 2
 		elif Globals.push_back_counter2 < 1:
 			Globals.push_back2 = false
-	move_and_slide()
+		
 
 func _on_farts_timer_timeout():
 	jump = false
 	$FartsTimer.stop()
 	$Farts.visible = false
+	$AnimationPlayer.stop()
 	Globals.farts_on = false
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
@@ -361,19 +420,18 @@ func _on_visible_on_screen_notifier_2d_screen_entered():
 func slowdown():
 	if !Globals.power_up:
 		if !Globals.poisoned:
-			Globals.player_speed = Globals.normal_speed / 2
+			Globals.player_speed = Globals.normal_speed / 3
 			Globals.player_jump_velocity = Globals.normal_jump + 200
 		else:
 			Globals.player_speed = Globals.normal_speed / 4
 			Globals.player_jump_velocity = Globals.normal_jump + 300
 	elif !Globals.poisoned:
 		if !Globals.power_up:
-			Globals.player_speed = Globals.normal_speed / 2
+			Globals.player_speed = Globals.normal_speed / 3
 			Globals.player_jump_velocity = Globals.normal_jump + 200
 		else:
 			Globals.player_speed = Globals.player_speed / 5
 			Globals.player_jump_velocity = Globals.normal_jump + (-100)
-			print(Globals.player_jump_velocity)
 
 func cancel_slowdown():
 	if !Globals.power_up:
@@ -389,9 +447,16 @@ func cancel_slowdown():
 			Globals.player_jump_velocity = Globals.normal_jump + (-350)
 
 func _on_restart_pressed():
+	$AudioRestart.play()
+	await get_tree().create_timer(0.01).timeout
 	get_tree().paused = false
-	stats_reset()
+	Globals.menu_on = false
 
 func _on_timer_timeout():
 	time_to_die = true
 	$Timer.stop()
+
+func _on_audio_restart_finished():
+	stats_reset()
+
+

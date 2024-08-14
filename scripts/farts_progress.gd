@@ -15,3 +15,4 @@ func _process(_delta):
 
 func update_poop_text():
 	poop_progress.value = Globals.poop
+	print(poop_progress.value, "    ", Globals.poop)

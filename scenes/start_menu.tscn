@@ -1,14 +1,19 @@
-[gd_scene load_steps=12 format=3 uid="uid://2qherdn7l3k2"]
+[gd_scene load_steps=17 format=3 uid="uid://2qherdn7l3k2"]
 
 [ext_resource type="Script" path="res://scripts/start_menu.gd" id="1_gbgod"]
 [ext_resource type="Texture2D" uid="uid://jbhrpqxye03t" path="res://graphics/play.png" id="1_wkv7m"]
 [ext_resource type="Texture2D" uid="uid://dsaru3rx3ns33" path="res://graphics/terrain/piaskowa platforma.png" id="2_5xg4a"]
 [ext_resource type="Texture2D" uid="uid://d4n2c4ovw1fmw" path="res://graphics/terrain/podstawowa platforma.png" id="3_ggce1"]
 [ext_resource type="Texture2D" uid="uid://cohuqj74dn2md" path="res://graphics/kaktus.png" id="4_eoh1p"]
+[ext_resource type="Texture2D" uid="uid://5r5ec8r23fmr" path="res://graphics/pnącze.png" id="5_07sti"]
 [ext_resource type="Texture2D" uid="uid://56m8fc1e8imy" path="res://animations/player_animation/grubas_jump_idle.png" id="7_0d7j3"]
 [ext_resource type="PackedScene" uid="uid://bvhkdvjdu5ra5" path="res://scenes/monster_plant.tscn" id="7_hptly"]
+[ext_resource type="PackedScene" uid="uid://bfp38abo8a0ia" path="res://scenes/sandstorm.tscn" id="8_2jhrv"]
 [ext_resource type="Texture2D" uid="uid://dddn2xwfy4rw2" path="res://animations/player_animation/gazy.png" id="8_ao3w5"]
 [ext_resource type="Texture2D" uid="uid://d427iaxhn5lm" path="res://graphics/pizza.png" id="9_j6bq7"]
+[ext_resource type="AudioStream" uid="uid://k8xjaxwc862y" path="res://sounds/button/button-click.wav" id="10_jwlax"]
+[ext_resource type="Texture2D" uid="uid://bfk3ty6ge8dyb" path="res://graphics/cameleon.png" id="13_5r1eg"]
+[ext_resource type="AudioStream" uid="uid://bb6g7k43fo6uq" path="res://sounds/W Górę Dzięki Pierdom.mp3" id="14_sdwbv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f4whk"]
 font_size = 89
@@ -118,6 +123,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 10
 
 [node name="PodstawowaPlatforma3" type="Sprite2D" parent="ColorRect/MarginContainer/LeftSide/Control3"]
+visible = false
 texture = ExtResource("3_ggce1")
 
 [node name="Control4" type="Control" parent="ColorRect/MarginContainer/LeftSide"]
@@ -129,6 +135,14 @@ size_flags_vertical = 10
 [node name="PodstawowaPlatforma4" type="Sprite2D" parent="ColorRect/MarginContainer/LeftSide/Control4"]
 texture = ExtResource("3_ggce1")
 
+[node name="Pnącze" type="Sprite2D" parent="ColorRect/MarginContainer/LeftSide/Control4"]
+position = Vector2(11, 0)
+texture = ExtResource("5_07sti")
+
+[node name="Cameleon" type="Sprite2D" parent="ColorRect/MarginContainer/LeftSide/Control4"]
+position = Vector2(0, 11)
+texture = ExtResource("13_5r1eg")
+
 [node name="Control5" type="Control" parent="ColorRect/MarginContainer/LeftSide"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
@@ -136,6 +150,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 10
 
 [node name="PodstawowaPlatforma5" type="Sprite2D" parent="ColorRect/MarginContainer/LeftSide/Control5"]
+visible = false
 texture = ExtResource("3_ggce1")
 
 [node name="Control6" type="Control" parent="ColorRect/MarginContainer/LeftSide"]
@@ -145,6 +160,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 10
 
 [node name="PodstawowaPlatforma6" type="Sprite2D" parent="ColorRect/MarginContainer/LeftSide/Control6"]
+visible = false
 texture = ExtResource("3_ggce1")
 
 [node name="RightSide" type="VBoxContainer" parent="ColorRect/MarginContainer"]
@@ -168,12 +184,9 @@ size_flags_horizontal = 4
 size_flags_vertical = 10
 
 [node name="PiaskowaPlatforma2" type="Sprite2D" parent="ColorRect/MarginContainer/RightSide/Control2"]
+visible = false
 position = Vector2(0, -4)
 texture = ExtResource("2_5xg4a")
-
-[node name="Kaktus" type="Sprite2D" parent="ColorRect/MarginContainer/RightSide/Control2"]
-position = Vector2(-2, -82)
-texture = ExtResource("4_eoh1p")
 
 [node name="Control3" type="Control" parent="ColorRect/MarginContainer/RightSide"]
 custom_minimum_size = Vector2(100, 50)
@@ -185,6 +198,10 @@ size_flags_vertical = 10
 position = Vector2(0, -8)
 texture = ExtResource("2_5xg4a")
 
+[node name="Kaktus" type="Sprite2D" parent="ColorRect/MarginContainer/RightSide/Control3"]
+position = Vector2(0, -87)
+texture = ExtResource("4_eoh1p")
+
 [node name="Control4" type="Control" parent="ColorRect/MarginContainer/RightSide"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
@@ -192,6 +209,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 10
 
 [node name="PiaskowaPlatforma4" type="Sprite2D" parent="ColorRect/MarginContainer/RightSide/Control4"]
+visible = false
 position = Vector2(0, -12)
 texture = ExtResource("2_5xg4a")
 
@@ -205,6 +223,9 @@ size_flags_vertical = 10
 position = Vector2(0, -16)
 texture = ExtResource("2_5xg4a")
 
+[node name="Sandstorm" parent="ColorRect/MarginContainer/RightSide/Control5" instance=ExtResource("8_2jhrv")]
+position = Vector2(0, -95)
+
 [node name="Control6" type="Control" parent="ColorRect/MarginContainer/RightSide"]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
@@ -212,6 +233,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 10
 
 [node name="PiaskowaPlatforma6" type="Sprite2D" parent="ColorRect/MarginContainer/RightSide/Control6"]
+visible = false
 texture = ExtResource("2_5xg4a")
 
 [node name="GrubasJumpIdle" type="Sprite2D" parent="."]
@@ -228,6 +250,14 @@ frame = 5
 position = Vector2(336, 225)
 texture = ExtResource("9_j6bq7")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_jwlax")
+volume_db = 8.667
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_sdwbv")
+
 [connection signal="button_down" from="ColorRect/MarginContainer/HBoxContainer/TextureButton" to="." method="_on_texture_button_button_down"]
 [connection signal="button_up" from="ColorRect/MarginContainer/HBoxContainer/TextureButton" to="." method="_on_texture_button_button_up"]
 [connection signal="pressed" from="ColorRect/MarginContainer/HBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="finished" from="AudioStreamPlayer2D2" to="." method="_on_audio_stream_player_2d_2_finished"]

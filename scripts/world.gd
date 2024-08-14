@@ -536,6 +536,8 @@ var random_bool = [false, false, false, false, true]
 var biome_number = "1"
 
 func _ready():
+	if $AudioPierdyyy.playing == false:
+		$AudioPierdyyy.play()
 	random_traps1()
 	random_traps2()
 	random_traps3()
@@ -593,15 +595,21 @@ func change_traps_if_next_biome():
 		random_trap = ["nothing", "sandstorm", "cactus", "nothing", "nothing", "nothing"]
 	elif biome_number == "3":
 		random_trap = ["spikes", "nothing", "nothing", "nothing", "golem", "nothing"]
+	elif biome_number == "4":
+		pass
 
 func position_equals_biome():
-	if $Player.position.y > -20000 and biome_number != "2":
-		biome_number = "1"
-	elif $Player.position.y <= -20000 and $Player.position.y > -40000:
+	if $Camera2D.position.y > -2000:
+		if biome_number != "2":
+			biome_number = "1"
+	elif $Camera2D.position.y <= -2000 and $Camera2D.position.y > -4000:
 		if biome_number != "3":
 			biome_number = "2"
-	elif $Player.position.y <= -40000 and biome_number != "4":
-		biome_number = "3"
+	elif $Camera2D.position.y <= -4000 and $Camera2D.position.y > -10000:
+		if biome_number != "4":
+			biome_number = "3"
+	else:
+		biome_number = "4"
 
 func random_power_up(a, b):
 	randomize()
@@ -7352,20 +7360,24 @@ func unpause():
 	$PauseMenu.hide()
 
 func _on_continue_pressed():
-	await get_tree().create_timer(0.01).timeout
-	unpause()
+	$PauseMenu/HBoxContainer/VBoxContainer/MarginContainer2/Continue/AudioContinue.play()
 
 func _on_touch_screen_button_pressed():
-	pause()
+	if !Globals.menu_on:
+		$pause_or_unpause/AudioStreamPlayer2D.play()
+		pause()
+		Globals.menu_on = true
 
 func _on_quit_pressed():
 	get_tree().quit()
 
 func _on_options_pressed():
+	$PauseMenu/HBoxContainer/VBoxContainer/MCOptions/Options/AudioOptions.play()
 	$Options.visible = true
 	$PauseMenu.visible = false
 
 func _on_mute_pressed():
+	$Options/AudioStreamPlayer2D.play()
 	var master_bus_index = AudioServer.get_bus_index("Master")
 	AudioServer.set_bus_mute(master_bus_index, !AudioServer.is_bus_mute(master_bus_index))
 	if AudioServer.is_bus_mute(master_bus_index):
@@ -7376,5 +7388,16 @@ func _on_mute_pressed():
 		$Options/HBoxContainer/MarginContainer2/Mute/Mute_text.modulate = "white"
 
 func _on_back_pressed():
+	$Options/AudioStreamPlayer2D.play()
 	$Options.visible = false
 	$PauseMenu.visible = true
+
+
+func _on_audio_continue_finished():
+	await get_tree().create_timer(0.01).timeout
+	unpause()
+	Globals.menu_on = false
+
+
+func _on_audio_pierdyyy_finished():
+	$AudioPierdyyy.play()

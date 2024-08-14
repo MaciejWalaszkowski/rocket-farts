@@ -18,6 +18,7 @@ offset_left = -65.72
 offset_top = -50.52
 offset_right = 228.04
 offset_bottom = 254.72
+scale = Vector2(0.792091, 0.767615)
 size_flags_horizontal = 0
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="MarginContainer"]
@@ -27,3 +28,4 @@ fill_mode = 3
 texture_under = ExtResource("2_r3bg6")
 texture_over = ExtResource("3_wgd15")
 texture_progress = ExtResource("4_hlrmr")
+texture_progress_offset = Vector2(76, 101)

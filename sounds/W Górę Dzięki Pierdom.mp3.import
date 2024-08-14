@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bb6g7k43fo6uq"
+path="res://.godot/imported/W Górę Dzięki Pierdom.mp3-30af505a0f952981699a7f39629729d6.mp3str"
+
+[deps]
+
+source_file="res://sounds/W Górę Dzięki Pierdom.mp3"
+dest_files=["res://.godot/imported/W Górę Dzięki Pierdom.mp3-30af505a0f952981699a7f39629729d6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

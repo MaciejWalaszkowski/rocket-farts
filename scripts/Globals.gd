@@ -51,6 +51,10 @@ var heavyShoes_on = false
 var heavyShoes = false
 var stuned = false
 var pl_enter_rock_p = false
+var menu_on = false
+var stop_cam = false
+var stop_cloud = false
+
 
 func _ready():
 	save_data = SaveData.load_or_create()
